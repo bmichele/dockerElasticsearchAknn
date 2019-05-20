@@ -1,0 +1,17 @@
+version: '3.5'
+
+services:
+  ubuntu:
+    build: .
+    image: ubuntu
+    container_name: ubuntu
+    hostname: ubuntu
+    tty: true
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    networks:
+      - esnet
+
+networks:
+  esnet:
