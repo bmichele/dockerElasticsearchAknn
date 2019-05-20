@@ -13,6 +13,7 @@ ENV ESBIN=elasticsearch-6.2.4/bin \
 RUN  apt-get update -y && apt-get upgrade -y
 
 RUN apt-get install \
+    sudo \
     wget \
     tar \
     bash \
@@ -58,14 +59,14 @@ RUN cd elastik-nearest-neighbors/elasticsearch-aknn/ && \
 RUN chown -R dummy elastik-nearest-neighbors
 
 # Remove useless stuff
-RUN apt-get remove --purge wget git unzip curl -y && apt-get clean
+RUN apt-get remove --purge wget git unzip -y && apt-get clean
 
 # Run ES
 RUN $ESBIN/elasticsearch-plugin remove elasticsearch-aknn | true
 RUN $ESBIN/elasticsearch-plugin install -b $PLUGINPATH
 RUN sysctl -w vm.max_map_count=262144
-ENV ES_HEAP_SIZE=512g 
+ENV ES_HEAP_SIZE=512g
 USER dummy
+CMD ["elasticsearch-6.2.4/bin/elasticsearch"]
 EXPOSE 9200 9300
-RUN cd elasticsearch-6.2.4/bin && ./elasticsearch
 
