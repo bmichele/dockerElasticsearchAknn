@@ -1,17 +1,25 @@
 version: '3.5'
 
 services:
-  ubuntu:
+  elasticsearch:
     build: .
-    image: ubuntu
-    container_name: ubuntu
-    hostname: ubuntu
-    tty: true
+    image: es
+    container_name: es
+    hostname: es
+#    tty: true
     ports:
       - "9200:9200"
-      - "9300:9300"
     networks:
       - esnet
-
+  web_app:
+    build: ./Flask
+    image: app
+    container_name: app
+    hostname: app
+    tty: true
+    ports:
+      - "5000:5000"
+    networks:
+      - esnet
 networks:
   esnet:

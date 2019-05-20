@@ -1,3 +1,6 @@
+#####################################
+# Dockerfile for Elasticsearch Aknn #
+#####################################
 FROM ubuntu:16.04
 
 # Java Version
@@ -69,5 +72,5 @@ ENV ES_HEAP_SIZE=512g
 COPY elasticsearch.yml /elasticsearch-6.2.4/config/.
 USER dummy
 CMD ["elasticsearch-6.2.4/bin/elasticsearch"]
-EXPOSE 9200 9300
+EXPOSE 9200
 
