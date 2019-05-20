@@ -66,6 +66,7 @@ RUN $ESBIN/elasticsearch-plugin remove elasticsearch-aknn | true
 RUN $ESBIN/elasticsearch-plugin install -b $PLUGINPATH
 RUN sysctl -w vm.max_map_count=262144
 ENV ES_HEAP_SIZE=512g
+COPY elasticsearch.yml /elasticsearch-6.2.4/config/.
 USER dummy
 CMD ["elasticsearch-6.2.4/bin/elasticsearch"]
 EXPOSE 9200 9300
