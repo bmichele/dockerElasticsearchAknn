@@ -13,9 +13,9 @@ services:
       - esnet
   web_app:
     build: ./Flask
-    image: app
-    container_name: app
-    hostname: app
+    image: flask_es
+    container_name: flask_es
+    hostname: flask_es
     tty: true
     ports:
       - "5000:5000"
